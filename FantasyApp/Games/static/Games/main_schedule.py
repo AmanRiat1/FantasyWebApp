@@ -3,7 +3,7 @@ import pandas as pd
 import xlrd
 import datetime
 #Reading spreadsheet data and creating file object 
-file = r'NBA_18_19.xls'
+file = r'C:\Users\Aman Riat\Documents\FantasyWebApp\FantasyApp\Games\static\Games\NBA_18_19.xls'
 data = pd.read_excel(file)
 
 def game_position(game):
@@ -40,59 +40,63 @@ def games_played(start, end):
 
     #New list with all NBA Teams
     nba_t = (list(data)[1:31])
-
-    #Lists that will show how many games teams are playing
-    five = []
-    four = []
-    three = []
-    two = []
-    one = []
-    zero = []
+    totalTeams = []
 
     #Variable used as counter to retrieve position of team in nba_t list
     team = 0
-    
+    #testLength is used to determine the number of teams each game play and sort those teams together 
+    testLength = []
+
     #Loop iterates over 30 teams
     while team <= 29:
-        games_played = 0
+        gamesPlayed = 0
         team_sch = (list(data[nba_t[team]]))
-
+        
         #For loop iterates over game range user enters 
         for game in range (start,end+1):
             if type(team_sch[game]) == str:
-                games_played += 1
+                gamesPlayed += 1
             else:
                 pass
 
-   
-        if games_played == 5:
-            five.append(nba_t[team])
-        elif games_played == 4:
-            four.append(nba_t[team])
-        elif games_played == 3:
-            three.append(nba_t[team])
-        elif games_played == 2:
-            two.append(nba_t[team])
-        elif games_played == 1:
-            one.append(nba_t[team])
-        else:
-            zero.append(nba_t[team])
+        currentTeam = Teams(nba_t[team],start,end,gamesPlayed)
+        totalTeams.append(currentTeam)
 
- 
+        #Each unique number is added to know what dimension list to make to organize teams together 
+        if currentTeam.total_games() not in testLength:
+            testLength.append(currentTeam.total_games())
         team += 1
 
-    #Formatted output to only display lists that have teams in them  
-    total_games = [zero,one,two,three,four,five]
-    control = 5
-    while control != -1:
-        if len(total_games[control]) > 0:
-            print ('')
-            print ("Teams with", control, "game(s):", total_games[control])
-        else:
-            pass
-        control = control -1
+    #multi dimension list where each cell holds teams that play the same games together 
+    gamesPlayedByTeam = [[] for i in range (len(testLength))]
 
-def Week_Games(start,end):
+    #sorting through teams and their games played from highest to lowest 
+    #makes it easier to group together in the list later 
+    totalTeamsLength = len(totalTeams)
+    for i in range(totalTeamsLength):
+        for j in range (0,totalTeamsLength-i-1):
+            if (totalTeams[j]).total_games() < (totalTeams[j+1]).total_games():
+                (totalTeams[j]), (totalTeams[j+1]) = (totalTeams[j+1]),(totalTeams[j])  
+
+    #By the nature of how teams are added to the list the first and last teams must be added beforehand
+    #This is so the teams can be compared to detremine if they should be held in the first cell or second 
+    gamesPlayedByTeam[0].append(totalTeams[0])
+    gamesPlayedByTeam[len(testLength)-1].append(totalTeams[totalTeamsLength-1])
+
+    #Teams are added by comparing their number of games to the team behind them 
+    #If the number is the same as the team behind them then the team is added to the same cell 
+    #If the number is different then the position increments and the team go into the next cell 
+    currentPosition = 0
+    for x in range(1,totalTeamsLength-1):
+        if totalTeams[x].total_games() == totalTeams[x-1].total_games():
+            gamesPlayedByTeam[currentPosition].append(totalTeams[x])
+        else:
+            currentPosition += 1
+            gamesPlayedByTeam[currentPosition].append(totalTeams[x])
+
+    return (gamesPlayedByTeam)
+
+def week_games(start,end):
     '''
     (int, int) -> None
     Prints out games days that are light
@@ -129,10 +133,14 @@ class Teams:
     Object stores team name, start date of back to back, and end date of back to back
     '''
     
-    def __init__(self,team,date_start = 0,date_end = 0):
+    def __init__(self,team,date_start = None,date_end = None, totalGames = None):
         self.team = team
         self.start = date_start
         self.end = date_end
+        self.totalGames = totalGames
+
+    def total_games(self):
+        return self.totalGames
     
     def __str__(self):
         if (self.start ==0 and self.end ==0):
@@ -149,7 +157,7 @@ class Teams:
         else:
             return False 
 
-class back:
+class BackToBack:
     '''
     Displays teams with backs to backs on the same day 
     '''
@@ -158,7 +166,7 @@ class back:
         self.end = end
 
 
-    def back_teams(self):
+    def teams_with_back(self):
         #New list with all NBA Teams
         nba_t = (list(data)[1:31])
 
@@ -208,7 +216,7 @@ class back:
             print ('No back to backs')
 
 
-def convertTime(date):
+def convert_time(date):
     #Convert time object to string to better use pre-existing code
     cleaned_date = date.strftime('%m/%d')
 

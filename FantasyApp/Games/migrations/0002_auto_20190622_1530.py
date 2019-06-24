@@ -24,10 +24,5 @@ class Migration(migrations.Migration):
                 ('start_date', models.DateField(verbose_name='start date')),
             ],
         ),
-        migrations.DeleteModel(
-            name='Choice',
-        ),
-        migrations.DeleteModel(
-            name='Question',
-        ),
+ 
     ]

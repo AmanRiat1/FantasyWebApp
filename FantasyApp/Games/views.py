@@ -1,15 +1,20 @@
 from django.shortcuts import render
+from django.template import loader
 
 from django.http import HttpResponse
 
-from Games.forms import StartForm,EndForm
+from .forms import StartForm,EndForm
 
-from Games.static.Games import main_schedule as schedule
+from .static.Games import main_schedule as schedule
 
-from
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    latest_question_list = 'hey'
+    template = loader.get_template('Games/index.html')
+    context = {
+        'latest_question_list': latest_question_list,
+    }
+    return HttpResponse(template.render(context, request))
 
 def process(request):
     if request.method == 'POST':
@@ -17,17 +22,18 @@ def process(request):
         formEnd = EndForm(request.POST)
 
         if formStart.is_valid() and formEnd.is_valid():
-            raw_start_date = formStart.cleaned_data['start_date']
-            raw_end_date = formEnd.cleaned_data['end_date']
+            rawStartDate = formStart.cleaned_data['start_date']
+            rawEndDate = formEnd.cleaned_data['end_date']
 
-            start_date = schedule.convertTime(raw_start_date)
-            end_date = schedule.convertTime(raw_end_date)
+            start_date = schedule.convert_time(rawStartDate)
+            end_date = schedule.convert_time(rawEndDate)
 
             #Where the date is in the spreadsheet
-            start_pos = schedule.game_position(start_date)
-            end_pos = schedule.game_position(end_date)
+            startPos = schedule.game_position(start_date)
+            endPos = schedule.game_position(end_date)
 
             #Processing of total games
+            totalNumberOfGames = schedule.games_played(startPos, endPos)
             #PICKUP FROM HERE 
 
 

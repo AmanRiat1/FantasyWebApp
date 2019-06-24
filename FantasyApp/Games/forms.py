@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 class StartForm(forms.Form):
-    start_date = forms.DateField(label='Start Date', max_length=20, input_formats= ['%m/%d/%Y'])
+    start_date = forms.DateField(label='Start Date', input_formats= ['%m/%d/%Y'])
 
     #Override 
     def clean_start_date(self):
@@ -17,7 +17,7 @@ class StartForm(forms.Form):
 
 
 class EndForm(forms.Form):
-    end_date = forms.DateField(help_text="Enter a date 7 days away", label='End Date', max_length=20)
+    end_date = forms.DateField(help_text="Enter a date 7 days away", label='End Date', input_formats= ['%m/%d/%Y'])
 
     def clean_end_date(self,startDate):
     #TODO add docstrings + start-date type
