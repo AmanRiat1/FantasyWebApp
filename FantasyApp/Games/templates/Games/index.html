@@ -21,19 +21,22 @@
       </div>
     </nav>
       
-    <div class="container">
-      <h3>Home</h3>
-    </div>
 
-    {% for author in authors %}
-        <li>{{ author|safe }}</li>
-    {% endfor %}
+{% block content %}
 
-    <form action="/total-games/" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit">
-    </form>
+  <form method="post">
+    {% csrf_token %}
+    {{ form }}
+<!--     <input type="date" name="start_date">
+    <input type="date" name="end_date"> -->
+    <input type="submit" value="Submit">
+    <p> {{ text }} </p>
+  </form>
+{% endblock %}
+
+{% for game in form.lightGameDays %}
+<p> Light game day: {{game}}</p>
+{% endfor %}
 
 </body>
 </html>

@@ -110,7 +110,7 @@ def week_games(start,end):
     print ("Light Game Days:")
     nba_teams = (list(data)[1:31])
 
-
+    totalLightGameDays = []
     for date in range (start,end+1):
         teamsInAWeek =[]
         games = 0
@@ -121,11 +121,11 @@ def week_games(start,end):
                     teamsInAWeek.append(Teams(nba_teams[team]))
                
         if games == 0:
-            print (data['Date'][date][:2] + ': ' + 'No games!')
+            return []
         elif games < 14:
-            print (data['Date'][date][:2] +': ' + str(games//2), ' games')
-            print ('Teams playing this day ',teamsInAWeek)
-            print('')
+            totalLightGameDays.append(teamsInAWeek)
+
+    return totalLightGameDays
 
 
 class Teams:
@@ -191,7 +191,8 @@ class BackToBack:
             for j in range (0,total_teams-i-1):
                 if (b2b[j]).start > (b2b[j+1]).start:
                     (b2b[j]), (b2b[j+1])= (b2b[j+1]),(b2b[j])       
-            
+        print (b2b)
+        total_teams_with_b2b = []
         if len(b2b) > 0:
             #Loops over teams with back to backs to sort and output teams with back to backs on the same days 
             while (len(b2b)) > 0:
@@ -201,6 +202,8 @@ class BackToBack:
                 b2b_start = b2b[0]
                 
                 for nba_team in range (len(b2b)):
+                    print (b2b_start)
+                    # == works here as it compares the start dates to each other 
                     if b2b_start == b2b[nba_team]:
                         teams_back.append(b2b[nba_team])
 
@@ -209,11 +212,12 @@ class BackToBack:
                     if sorted_team in b2b:
                         b2b.remove(sorted_team)
 
-                date_one = (teams_back[0]).start
-                date_two = (teams_back[0]).end 
-                print ((data['Date'][date_one][:2]) ,"-", (data['Date'][date_two][:2]) +':', teams_back)
+                total_teams_with_b2b.append(teams_back)
+
+            return total_teams_with_b2b
+
         else:
-            print ('No back to backs')
+            return []
 
 
 def convert_time(date):
