@@ -25,6 +25,8 @@ def index(request):
             endPos = schedule.game_position(end_date)
 
             #Processing of total games
+            form.start = start_date
+            form.end = end_date
             form.totalNumberOfGames = schedule.games_played(startPos, endPos)
 
             teamsWithBackToBack = schedule.BackToBack(startPos, endPos)
@@ -40,51 +42,8 @@ def index(request):
         'form': form
     }
 
-    return render(request,'Games/index.html', context)
+    return render(request,'Games/all_info.html', context)
 
-# def process(request):
-#     if request.method == 'POST':
-#         formStart = StartForm(request.POST)
-#         formEnd = EndForm(request.POST)
-#
-#         #if formStart.is_valid() and formEnd.is_valid():
-#         rawStartDate = formStart.cleaned_data['start_date']
-#         rawEndDate = formEnd.cleaned_data['end_date']
-#
-#         start_date = schedule.convert_time(rawStartDate)
-#         end_date = schedule.convert_time(rawEndDate)
-#
-#         #Where the date is in the spreadsheet
-#         startPos = schedule.game_position(start_date)
-#         endPos = schedule.game_position(end_date)
-#
-#         #Processing of total games
-#         totalNumberOfGames = schedule.games_played(startPos, endPos)
-#
-#         teamsWithBackToBack = schedule.BackToBack(startPos, endPos)
-#         totalTeamsWithBack = teamsWithBackToBack.teams_with_back()
-#
-#         lightGameDays =  schedule.week_games(startPos, endPos)
-#
-#         text = 'hey'
-#
-#         context = {
-#             'totalNumberOfGames': totalNumberOfGames,
-#             'totalTeamsWithBack': totalTeamsWithBack,
-#             'lightGameDays': lightGameDays,
-#             'text': text
-#         }
-#
-#         return HttpResponseRedirect('/thanks/')
-#     else:
-#         formStart = StartForm()
-#         formEnd = EndForm()
-#         context = {
-#             'formStart': formStart,
-#             'formEnd' :formEnd
-#         }
-#
-#     return render(request,'Games/index.html', context)
 #
 #
 #

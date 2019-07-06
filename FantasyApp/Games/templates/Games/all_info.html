@@ -1,0 +1,20 @@
+ {% extends 'Games/index.html' %}
+ {% load extra %}
+
+ {% block content %}
+    Teams and games they play between {{ form.start}} - {{ form.end}}: </p>
+    {% for x in form.totalNumberOfGames %}
+    <p> Teams with {{ x.0.totalGames}}: {{ x }} </p>
+    {% endfor %}
+
+    <p>Teams with back to backs between {{form.start}} - {{form.end}}: </p>
+    {% for x in form.totalTeamsWithBack %}
+    <p> {{ x.0.stringStart }} - {{ x.0.stringEnd }}: {{ x }} </p>
+    {% endfor %}
+
+    <p> Light game days and teams playing: 
+    {% for x in form.lightGameDays %}
+    <p> {{ x.0.lightDay}}: {{ x|length|divide:2 }} games </p>
+    <p> {{x}} </p>
+    {% endfor %}
+{% endblock %} 

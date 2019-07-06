@@ -22,7 +22,7 @@
     </nav>
       
 
-{% block content %}
+
 
   <form method="post">
     {% csrf_token %}
@@ -30,13 +30,12 @@
 <!--     <input type="date" name="start_date">
     <input type="date" name="end_date"> -->
     <input type="submit" value="Submit">
-    <p> {{ text }} </p>
   </form>
+
+
+{% block content %}
 {% endblock %}
 
-{% for game in form.lightGameDays %}
-<p> Light game day: {{game}}</p>
-{% endfor %}
 
 </body>
 </html>

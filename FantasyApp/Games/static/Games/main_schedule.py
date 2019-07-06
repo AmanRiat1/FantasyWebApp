@@ -106,8 +106,7 @@ def week_games(start,end):
     Tu-01/01 :  5  games
     Th-01/03 :  3  games
     '''
-    #TODO: Add additional output to show which teams play on that day 
-    print ("Light Game Days:")
+    #TODO: Add additional output to show which teams play on that day
     nba_teams = (list(data)[1:31])
 
     totalLightGameDays = []
@@ -118,7 +117,7 @@ def week_games(start,end):
             current_team = (list(data[nba_teams[team]]))
             if type(current_team[date]) == str:
                     games += 1
-                    teamsInAWeek.append(Teams(nba_teams[team]))
+                    teamsInAWeek.append(Teams(nba_teams[team], None, None, None, data['Date'][date]))
                
         if games == 0:
             return []
@@ -133,11 +132,16 @@ class Teams:
     Object stores team name, start date of back to back, and end date of back to back
     '''
     
-    def __init__(self,team,date_start = None,date_end = None, totalGames = None):
+    def __init__(self,team,date_start = None,date_end = None, totalGames = None, lightDay = None):
         self.team = team
         self.start = date_start
         self.end = date_end
         self.totalGames = totalGames
+        self.lightDay = lightDay
+
+        if (date_start != None):
+            self.stringStart = data['Date'][date_start]
+            self.stringEnd = data['Date'][date_end]
 
     def total_games(self):
         return self.totalGames
@@ -166,6 +170,7 @@ class BackToBack:
         self.end = end
 
 
+
     def teams_with_back(self):
         #New list with all NBA Teams
         nba_t = (list(data)[1:31])
@@ -185,13 +190,13 @@ class BackToBack:
                     pass
 
             team += 1
-        #modified bubble sort to sort teams by date the back to back is played 
+        #modified bubble sort to sort teams by date the back to back is played
         total_teams = len(b2b)
         for i in range(total_teams):
             for j in range (0,total_teams-i-1):
                 if (b2b[j]).start > (b2b[j+1]).start:
-                    (b2b[j]), (b2b[j+1])= (b2b[j+1]),(b2b[j])       
-        print (b2b)
+                    (b2b[j]), (b2b[j+1])= (b2b[j+1]),(b2b[j])
+
         total_teams_with_b2b = []
         if len(b2b) > 0:
             #Loops over teams with back to backs to sort and output teams with back to backs on the same days 
@@ -202,7 +207,6 @@ class BackToBack:
                 b2b_start = b2b[0]
                 
                 for nba_team in range (len(b2b)):
-                    print (b2b_start)
                     # == works here as it compares the start dates to each other 
                     if b2b_start == b2b[nba_team]:
                         teams_back.append(b2b[nba_team])
