@@ -1,17 +1,11 @@
-from django.http import HttpResponse
-from django.http import HttpResponseRedirect
 from django.shortcuts import render
-
 from .forms import DateForm
-from django.template import loader
-
 from .static.Games import main_schedule as schedule
 
 
 def index(request):
     if request.method == 'POST':
         form = DateForm(request.POST)
-        #formEnd = EndForm(request.POST)
 
         if form.is_valid():
             rawStartDate = form.cleaned_data['start_date']
@@ -24,7 +18,7 @@ def index(request):
             startPos = schedule.game_position(start_date)
             endPos = schedule.game_position(end_date)
 
-            #Processing of total games
+            #Processing of total games and related information
             form.start = start_date
             form.end = end_date
             form.totalNumberOfGames = schedule.games_played(startPos, endPos)
@@ -32,7 +26,7 @@ def index(request):
             teamsWithBackToBack = schedule.BackToBack(startPos, endPos)
             form.totalTeamsWithBack = teamsWithBackToBack.teams_with_back()
 
-            form.lightGameDays =  schedule.week_games(startPos, endPos)
+            form.lightGameDays =  schedule.light_game_days(startPos, endPos)
 
     else:
         form = DateForm()
