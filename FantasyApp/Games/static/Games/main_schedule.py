@@ -1,7 +1,8 @@
 import pandas as pd
+import os
 
-#Reading spreadsheet data and creating file object 
-file = r'C:\Users\Aman Riat\Documents\FantasyWebApp\FantasyApp\Games\static\Games\NBA_18_19.xls'
+#Reading spreadsheet data and creating file object, when running file indepdently remove Games\static\Games\ part
+file = os.path.realpath(r'Games\static\Games\NBA_18_19.xls')
 data = pd.read_excel(file)
 
 def convert_time(date):
@@ -24,6 +25,7 @@ def game_position(game):
     for date_index in range (0,(len(data['Date']))):
         if game in data['Date'][date_index]:
             return date_index
+
  
 def games_played(start, end):
     '''
@@ -36,6 +38,8 @@ def games_played(start, end):
     Returns:
         list: multi-dimensional list where each cell holds teams that play the same amount of games
     '''
+    if (start == None) or (end == None):
+        return None
 
     nbaTeams = (list(data)[1:31])
     totalTeams = []
@@ -102,6 +106,10 @@ def light_game_days(start,end):
     Returns:
         list: multi-dimensional list where each cell holds teams that play on the light game day
     '''
+
+    if (start == None) or (end == None):
+        return None
+
     nba_teams = (list(data)[1:31])
 
     totalLightGameDays = []
@@ -115,7 +123,7 @@ def light_game_days(start,end):
                     lightGameDay.append(Teams(nba_teams[team], None, None, None, data['Date'][date]))
                
         if games == 0:
-            return []
+            return None
         elif games < 14:
             totalLightGameDays.append(lightGameDay)
 
@@ -187,6 +195,9 @@ class BackToBack:
 
         '''
         #New list with all NBA Teams
+        if (self.start == None) or (self.end == None):
+            return None
+
         nbaTeams = (list(data)[1:31])
 
         #Counter to retrieve position of team in nba_t list and list of teams with a back to back

@@ -2,7 +2,7 @@ from django import forms
 
 class DateForm(forms.Form):
     start_date = forms.DateField(label='Start Date', input_formats= ['%m/%d/%Y'])
-    end_date = forms.DateField(help_text="Enter a date 7 days away", label='End Date', input_formats=['%m/%d/%Y'])
+    end_date = forms.DateField(label='End Date', input_formats=['%m/%d/%Y'])
 
     # #Override
     # def clean_start_date(self):

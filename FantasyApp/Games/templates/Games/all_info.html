@@ -2,19 +2,33 @@
  {% load extra %}
 
  {% block content %}
-    Teams and games they play between {{ form.start}} - {{ form.end}}: </p>
-    {% for x in form.totalNumberOfGames %}
-    <p> Teams with {{ x.0.totalGames}}: {{ x }} </p>
-    {% endfor %}
 
-    <p>Teams with back to backs between {{form.start}} - {{form.end}}: </p>
-    {% for x in form.totalTeamsWithBack %}
-    <p> {{ x.0.stringStart }} - {{ x.0.stringEnd }}: {{ x }} </p>
-    {% endfor %}
+    <p><b>Teams and games they play between {{ form.start}} - {{ form.end}}: </b></p>
+    	{% if form.totalNumberOfGames%}
+		    {% for x in form.totalNumberOfGames %}
+		    <p> Teams with {{ x.0.totalGames}}: {{ x }} </p>
+		    {% endfor %}
+		{% else %}
+			<p> No teams play during {{ form.start }} - {{ form.end }} </p>
+		{% endif %}
 
-    <p> Light game days and teams playing: 
-    {% for x in form.lightGameDays %}
-    <p> {{ x.0.lightDay}}: {{ x|length|divide:2 }} games </p>
-    <p> {{x}} </p>
-    {% endfor %}
+    <p><b>Teams with back to backs between {{form.start}} - {{form.end}}: </b></p>
+    	{% if form.totalTeamsWithBack %}
+			{% for x in form.totalTeamsWithBack %}
+			<p> {{ x.0.stringStart }} - {{ x.0.stringEnd }}: {{ x }} </p>
+			{% endfor %}
+		{% else %}
+			<p> No back to backs </p>
+		{% endif %}
+
+    <p><b> Light game days between {{form.start}} - {{form.end}} and teams playing during those days: </b></p>
+	    {% if form.lightGameDays %}
+		    {% for x in form.lightGameDays %}
+		    <p> {{ x.0.lightDay}}: {{ x|length|divide:2 }} games </p>
+		    <p> {{x}} </p>
+		    {% endfor %}
+		{% else %}
+			<p> No light game days </p>
+		{% endif %}
+
 {% endblock %} 

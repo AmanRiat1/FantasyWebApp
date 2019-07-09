@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      <title>Bootstrap Example</title>
+      <title>Fantasy Basketball Tool</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -15,22 +15,18 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="#">Games in a Week </a>
         </div>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-        </ul>
       </div>
     </nav>
       
 
 
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form }}
-<!--     <input type="date" name="start_date">
-    <input type="date" name="end_date"> -->
-    <input type="submit" value="Submit">
-  </form>
+<form method="post">
+  {% csrf_token %}
+  {{ form }}
+
+  <input type="submit" value="Submit">
+</form>
 
 
 {% block content %}

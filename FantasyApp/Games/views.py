@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .forms import DateForm
 from .static.Games import main_schedule as schedule
+import datetime
 
+#TODO: further encapsulate code
 
 def index(request):
     if request.method == 'POST':
@@ -30,6 +32,24 @@ def index(request):
 
     else:
         form = DateForm()
+
+        # Starting at the beginning of the week, code below finds monday and then sunday of the week
+        today = datetime.date.today()
+        nearestMonday = today - datetime.timedelta(days=today.weekday())
+        sunday = nearestMonday + datetime.timedelta(days=6)
+
+        form.start = schedule.convert_time(nearestMonday)
+        form.end = schedule.convert_time(sunday)
+
+        startPos = schedule.game_position(form.start)
+        endPos = schedule.game_position(form.end)
+
+        form.totalNumberOfGames = schedule.games_played(startPos, endPos)
+
+        teamsWithBackToBack = schedule.BackToBack(startPos, endPos)
+        form.totalTeamsWithBack = teamsWithBackToBack.teams_with_back()
+
+        form.lightGameDays = schedule.light_game_days(startPos, endPos)
 
 
     context = {
