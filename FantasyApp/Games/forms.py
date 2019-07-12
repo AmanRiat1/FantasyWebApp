@@ -1,8 +1,11 @@
 from django import forms
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
 class DateForm(forms.Form):
-    start_date = forms.DateField(label='Start Date', input_formats= ['%m/%d/%Y'])
-    end_date = forms.DateField(label='End Date', input_formats=['%m/%d/%Y'])
+    start_date = forms.DateField(widget=DateInput,label='Start Date', input_formats= ['%Y-%m-%d'])
+    end_date = forms.DateField(widget=DateInput,label='End Date', input_formats=['%Y-%m-%d'])
 
     # #Override
     # def clean_start_date(self):
