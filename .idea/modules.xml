@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/FantasyApp.iml" filepath="$PROJECT_DIR$/.idea/FantasyApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/FantasyWebApp.iml" filepath="$PROJECT_DIR$/.idea/FantasyWebApp.iml" />
     </modules>
   </component>
 </project>

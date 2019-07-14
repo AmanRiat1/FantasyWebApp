@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import DateForm
-from .static.Games import main_schedule as schedule
+from .app_code import main_schedule as schedule
 import datetime
 
 #TODO: further encapsulate code
