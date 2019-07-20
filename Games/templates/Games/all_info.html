@@ -1,34 +1,98 @@
- {% extends 'Games/index.html' %}
- {% load extra %}
+ {% extends 'Games/index.html' %} {% load extra %} {% block content %}
 
- {% block content %}
+<div class="container-fluid">
 
-    <p><b>Teams and games they play between {{ form.start}} - {{ form.end}}: </b></p>
-    	{% if form.totalNumberOfGames%}
-		    {% for x in form.totalNumberOfGames %}
-		    <p> Teams with {{ x.0.totalGames}}: {{ x }} </p>
-		    {% endfor %}
-		{% else %}
-			<p> No teams play during {{ form.start }} - {{ form.end }} </p>
-		{% endif %}
+    <div class="row">
+        <div class="col">
+            <h6 class="text-center">Teams and games they play between {{ form.start}} - {{ form.end}}: </h6>
+            <div class="table-responsive">
+                <table class="table table-bordered ">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="text-center">Games</th>
+                            <th class="text-center">Teams</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if form.totalNumberOfGames%} 
+	                        {% for x in form.totalNumberOfGames %}
+	                        <tr>
+	                            <td class="text-center">{{ x.0.totalGames}}</td>
+	                            <td class="text-center">{{ x }}</td>
+	                        </tr>
+	                        {% endfor %} 
+                        {% else %}
+	                        <tr>
+	                            <td colspan="2" class="text-center">No teams play during {{ form.start }} - {{ form.end }}</td>
+	                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+     </div>
 
-    <p><b>Teams with back to backs between {{form.start}} - {{form.end}}: </b></p>
-    	{% if form.totalTeamsWithBack %}
-			{% for x in form.totalTeamsWithBack %}
-			<p> {{ x.0.stringStart }} - {{ x.0.stringEnd }}: {{ x }} </p>
-			{% endfor %}
-		{% else %}
-			<p> No back to backs </p>
-		{% endif %}
+    <div class="row">
+        <div class="col">
+            <h6 class="text-center">Teams with back to backs between {{form.start}} - {{form.end}}: </h6>
+            <div class="table-responsive">
+                <table class="table table-bordered ">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="text-center">Dates</th>
+                            <th class="text-center">Teams</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if form.totalTeamsWithBack %} 
+	                        {% for x in form.totalTeamsWithBack %}
+	                        <tr>
+	                            <td> {{ x.0.stringStart }} - {{ x.0.stringEnd }}</td>
+	                            <td class="text-center">{{ x }}</td>
+	                        </tr>
+	                        {% endfor %} 
+                        {% else %}
+	                        <tr>
+	                            <td colspan="2" class="text-center">No back to backs</td>
+	                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-    <p><b> Light game days between {{form.start}} - {{form.end}} and teams playing during those days: </b></p>
-	    {% if form.lightGameDays %}
-		    {% for x in form.lightGameDays %}
-		    <p> {{ x.0.lightDay}}: {{ x|length|divide:2 }} games </p>
-		    <p> {{x}} </p>
-		    {% endfor %}
-		{% else %}
-			<p> No light game days </p>
-		{% endif %}
+    <div class="row">
+        <div class="col">
+            <h6 class="text-center">Light game days between {{form.start}} - {{form.end}}:</h6>
+            <div class="table-responsive">
+                <table class="table table-bordered ">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="text-center">Dates</th>
+                            <th class="text-center">Games</th>
+                            <th class="text-center">Teams</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    	{% if form.lightGameDays %}
+                        	{% for x in form.lightGameDays %}
+	                        <tr>
+	                            <td >{{ x.0.lightDay}}</td>
+	                            <td class="text-center">{{ x|length|divide:2 }}</td>
+	                            <td class="text-center">{{ x }}</td>
+	                        </tr>
+                        	{% endfor %}
+                        {% else %}
+                           	<tr>
+	                            <td colspan="3" class="text-center">No light game days</td>
+	                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-{% endblock %} 
+{% endblock %}

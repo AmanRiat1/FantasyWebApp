@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import datetime
 
-#Reading spreadsheet data and creating file object, when running file indepdently remove Games\static\Games\ part
+#Reading spreadsheet data and creating file object, when running file indepdently remove Games/static/Games/ part
 file = os.path.realpath(r'Games/static/Games/NBA_18_19.xls')
 data = pd.read_excel(file)
 
@@ -114,19 +114,18 @@ def light_game_days(start,end):
     nba_teams = (list(data)[1:31])
 
     totalLightGameDays = []
-    for date in range (start,end+1):
-        lightGameDay =[]
+    for date in range (start, end+1):
+        teamWithGame =[]
         games = 0
         for team in range (0,30):
             current_team = (list(data[nba_teams[team]]))
             if type(current_team[date]) == str:
                     games += 1
-                    lightGameDay.append(Teams(nba_teams[team], None, None, None, data['Date'][date]))
-               
-        if games == 0:
-            return None
-        elif games < 14:
-            totalLightGameDays.append(lightGameDay)
+                    teamWithGame.append(Teams(nba_teams[team], lightDay = data['Date'][date]))
+
+        if (0 < games < 14):
+            totalLightGameDays.append(teamWithGame)
+
 
     return totalLightGameDays
 
