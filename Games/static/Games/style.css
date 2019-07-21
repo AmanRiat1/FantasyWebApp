@@ -1,4 +1,56 @@
-.table {
-    width: 50%;
-    margin: 0 auto !important;
-}	
+body {
+  font-family: 'Oswald', sans-serif !important;
+}
+
+hr {
+    display: block;
+    height: 5px;
+    border: 0;
+    border-top: 3px solid #FFCC66 ;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.navbar {
+  background-color: #336699 !important;
+}
+.navbar .navbar-brand {
+  color: #ffffff;
+}
+
+.navbar .navbar-text {
+  color: #ffffff;
+}
+.navbar .navbar-text a {
+  color: #ffffff;
+}
+.navbar .navbar-text a:hover,
+.navbar .navbar-text a:focus {
+  color: #ffffff; 
+}
+.main-body{
+	background-color: #FFFFFF !important;
+}
+
+.thead{
+	background-color: #336699 !important;
+}
+
+.tbody{
+	background-color: #FFFFFF;
+	font-family: 'Open Sans', sans-serif !important;
+}
+
+#form-main{
+	font-family: 'Open Sans', sans-serif !important;
+}
+
+#column-title{
+	color:#ffffff;
+}
+
+.footer-bottom{
+	background-color:#1C2331	;
+}
+
+
