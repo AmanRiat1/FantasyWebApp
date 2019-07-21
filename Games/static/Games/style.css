@@ -41,6 +41,11 @@ hr {
 	font-family: 'Open Sans', sans-serif !important;
 }
 
+.footer-bottom{
+	background-color:#1C2331;
+}
+
+
 #form-main{
 	font-family: 'Open Sans', sans-serif !important;
 }
@@ -49,8 +54,5 @@ hr {
 	color:#ffffff;
 }
 
-.footer-bottom{
-	background-color:#1C2331	;
-}
 
 

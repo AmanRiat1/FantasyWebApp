@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b32a2918-85c8-4455-bc89-365299d9f143" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Games/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Games/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Games/static/Games/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Games/static/Games/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Games/templates/Games/all_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/Games/templates/Games/all_info.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Games/templates/Games/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Games/templates/Games/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,10 +13,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FantasyApp/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
+            <state relative-caret-position="105">
               <caret line="27" column="56" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
             </state>
           </provider>
@@ -48,7 +46,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Games/forms.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="128">
@@ -225,13 +223,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FantasyApp/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="27" column="56" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Games/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -259,6 +250,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FantasyApp/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="27" column="56" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
         </state>
       </provider>
     </entry>
