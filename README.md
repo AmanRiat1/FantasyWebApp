@@ -1,6 +1,6 @@
 # FantasyWebApp
 
-A basic web app to get useful information about fantasy basketball during game weeks. 
+A basic web app to get useful information about fantasy basketball during game weeks. Visit the live website at [here](https://fantasytool.herokuapp.com/games).
 
 
 ## Running Through Docker 
