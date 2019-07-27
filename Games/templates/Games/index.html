@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{% static 'Games/style.css' %}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -15,35 +15,34 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/adb6714e26.js"></script>
 </head>
+
 <body>
+	<div class = "main-body">
+	  <div id="nav">
+	    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
+	      <!-- Navbar text-->
+	      <span class="navbar-text">
+	        <h1 class="text-center">Fantasy Ball Tool</h1>
+	      </span>
+	    </nav>
+	    <br>
+	  </div>
 
+	  <div class="m-3 mb-5">
+	    <div class="container-fluid">
+	      <form id="form-main" method="post" class="text-center">
+	        {% csrf_token %}
+	        {{ form }}
+	      <input class = "btn btn-secondary" type="submit" value="Submit">
+	      </form>        
+	    </div>
+	  </div>
 
-<div class = "main-body">
-  <div id="nav">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
-      <!-- Navbar text-->
-      <span class="navbar-text">
-        <h1 class="text-center">Fantasy Ball Tool</h1>
-      </span>
-    </nav>
-    <br>
-  </div>
+	  <hr>
 
-  <div class="m-3 mb-5">
-    <div class="container-fluid">
-      <form id="form-main" method="post" class="text-center">
-        {% csrf_token %}
-        {{ form }}
-      <input class = "btn btn-secondary" type="submit" value="Submit">
-      </form>        
-    </div>
-  </div>
-
-  <hr>
-
-  {% block content %}
-  {% endblock %}
-</div>
+	  {% block content %}
+	  {% endblock %}
+	</div>
 </body>
 
 <footer class="page-footer font-small blue">
