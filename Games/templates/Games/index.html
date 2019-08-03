@@ -32,8 +32,27 @@
 	    <div class="container-fluid">
 	      <form id="form-main" method="post" class="text-center">
 	        {% csrf_token %}
-	        {{ form }}
+	        {{ form.start_date.label_tag}}
+	        {{ form.start_date}}
+	        {{ form.end_date.label_tag }}
+	        {{ form.end_date }}
 	      <input class = "btn btn-secondary" type="submit" value="Submit">
+			{% if form.errors %}
+			    <ul class="user-msg error">
+			    {% for field in form %}
+			        {% for error in field.errors %}
+
+
+<div class="alert alert-danger alert-dismissible fade show">
+    <strong>{{ field.label }}: </strong>{{ error }}.
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+</div>
+
+
+			        {% endfor %}
+			    {% endfor %}
+			    </ul>
+			{% endif %}
 	      </form>        
 	    </div>
 	  </div>
