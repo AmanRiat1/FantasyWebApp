@@ -21,7 +21,7 @@ def game_position(game):
     Returns:
         int: Position of game in excel sheet
     '''
-    
+
     for date_index in range (0,(len(data['Date']))):
         if game in data['Date'][date_index]:
             return date_index

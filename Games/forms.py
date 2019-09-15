@@ -7,8 +7,8 @@ class DateInput(forms.DateInput):
 class DateForm(forms.Form):
     start_date = forms.DateField(widget=DateInput,label='Start Date', input_formats= ['%Y-%m-%d'])
     end_date = forms.DateField(widget=DateInput,label='End Date', input_formats=['%Y-%m-%d'])
-    nba_start_date = datetime.date(2018,10,16)
-    nba_end_date = datetime.date(2019,4,10)
+    nba_start_date = datetime.date(2019,10,22)
+    nba_end_date = datetime.date(2020,4,15)
 
     def clean_start_date(self, *args, **kwargs):
         start_date = self.cleaned_data.get('start_date')
