@@ -1,98 +1,93 @@
- {% extends 'Games/index.html' %} {% load extra %} {% block content %}
-
+{% extends 'Games/index.html' %} {% load extra %} {% block content %}
 <div class="container-fluid">
-
-    <div class="row">
-        <div class="col">
-            <h4 class ="font-weight-light">Teams and games they play between {{ form.start}} - {{ form.end}}: </h4>
-            <div class="table-responsive">
-                <table class="table table-bordered ">
-                    <thead class="thead">
-                        <tr>
-                            <th id ="column-title"class="text-center ">Games</th>
-                            <th id ="column-title"class="text-center">Teams</th>
-                        </tr>
-                    </thead>
-                    <tbody class = "tbody">
-                        {% if form.totalNumberOfGames%} 
-	                        {% for x in form.totalNumberOfGames %}
-	                        <tr>
-	                            <td class="text-center">{{ x.0.totalGames}}</td>
-	                            <td class="text-center">{{ x }}</td>
-	                        </tr>
-	                        {% endfor %} 
-                        {% else %}
-	                        <tr>
-	                            <td colspan="2" class="text-center">No teams play between {{ form.start }} - {{ form.end }}</td>
-	                        </tr>
-                        {% endif %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-     </div>
-
-    <div class="row">
-        <div class="col">
-            <h4 class ="font-weight-light">Teams with back to backs between {{form.start}} - {{form.end}}: </h4>
-            <div class="table-responsive">
-                <table class="table table-bordered ">
-                    <thead class="thead">
-                        <tr>
-                            <th id ="column-title">Dates</th>
-                            <th id ="column-title"class="text-center">Teams</th>
-                        </tr>
-                    </thead>
-                    <tbody class = "tbody">
-                        {% if form.totalTeamsWithBack %} 
-	                        {% for x in form.totalTeamsWithBack %}
-	                        <tr>
-	                            <td> {{ x.0.stringStart }} - {{ x.0.stringEnd }}</td>
-	                            <td class="text-center">{{ x }}</td>
-	                        </tr>
-	                        {% endfor %} 
-                        {% else %}
-	                        <tr>
-	                            <td colspan="2" class="text-center">No back to backs  between {{ form.start}} - {{ form.end}}</td>
-	                        </tr>
-                        {% endif %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col">
+      <h4 class ="font-weight-light">Teams and games they play between {{ form.start}} - {{ form.end}}: </h4>
+      <div class="table-responsive">
+        <table class="table table-bordered ">
+          <thead class="thead">
+            <tr>
+              <th id ="column-title"class="text-center">Games</th>
+              <th id ="column-title"class="text-center">Teams</th>
+            </tr>
+          </thead>
+          <tbody class = "tbody">
+            {% if form.totalNumberOfGames%} 
+							{% for x in form.totalNumberOfGames %}
+								<tr>
+									<td class="text-center">{{ x.0.totalGames}}</td>
+									<td class="text-center">{{ x }}</td>
+								</tr>
+							{% endfor %} 
+            {% else %}
+							<tr>
+								<td colspan="2" class="text-center">No teams play between {{ form.start }} - {{ form.end }}</td>
+							</tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
     </div>
-
-    <div class="row">
-        <div class="col">
-            <h4 class ="font-weight-light">Light game days between {{form.start}} - {{form.end}}:</h4>
-            <div class="table-responsive">
-                <table class="table table-bordered ">
-                    <thead class="thead">
-                        <tr>
-                            <th id ="column-title">Dates</th>
-                            <th id ="column-title" class="text-center">Games</th>
-                            <th id ="column-title"class="text-center">Teams</th>
-                        </tr>
-                    </thead>
-                    <tbody class = "tbody">
-                    	{% if form.lightGameDays %}
-                        	{% for x in form.lightGameDays %}
-	                        <tr>
-	                            <td >{{ x.0.lightDay}}</td>
-	                            <td class="text-center">{{ x|length|divide:2 }}</td>
-	                            <td class="text-center">{{ x }}</td>
-	                        </tr>
-                        	{% endfor %}
-                        {% else %}
-                           	<tr>
-	                            <td colspan="3" class="text-center">No light game days  between {{ form.start}} - {{ form.end}}</td>
-	                        </tr>
-                        {% endif %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h4 class ="font-weight-light">Teams with back to backs between {{form.start}} - {{form.end}}: </h4>
+      <div class="table-responsive">
+        <table class="table table-bordered ">
+          <thead class="thead">
+            <tr>
+              <th id ="column-title">Dates</th>
+              <th id ="column-title"class="text-center">Teams</th>
+            </tr>
+          </thead>
+          <tbody class = "tbody">
+            {% if form.totalTeamsWithBack %} 
+							{% for x in form.totalTeamsWithBack %}
+								<tr>
+									<td> {{ x.0.stringStart }} - {{ x.0.stringEnd }}</td>
+									<td class="text-center">{{ x }}</td>
+								</tr>
+							{% endfor %} 
+            {% else %}
+							<tr>
+								<td colspan="2" class="text-center">No back to backs  between {{ form.start}} - {{ form.end}}</td>
+							</tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h4 class ="font-weight-light">Light game days between {{form.start}} - {{form.end}}:</h4>
+      <div class="table-responsive">
+        <table class="table table-bordered ">
+          <thead class="thead">
+            <tr>
+              <th id ="column-title">Dates</th>
+              <th id ="column-title" class="text-center">Games</th>
+              <th id ="column-title"class="text-center">Teams</th>
+            </tr>
+          </thead>
+          <tbody class = "tbody">
+            {% if form.lightGameDays %}
+							{% for x in form.lightGameDays %}
+								<tr>
+									<td >{{ x.0.lightDay}}</td>
+									<td class="text-center">{{ x|length|divide:2 }}</td>
+									<td class="text-center">{{ x }}</td>
+								</tr>
+							{% endfor %}
+            {% else %}
+							<tr>
+								<td colspan="3" class="text-center">No light game days  between {{ form.start}} - {{ form.end}}</td>
+							</tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
-
 {% endblock %}

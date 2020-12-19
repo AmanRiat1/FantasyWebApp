@@ -41,6 +41,7 @@ hr {
 	font-family: 'Open Sans', sans-serif !important;
 }
 
+
 .footer-bottom{
 	background-color:#1C2331;
 }
@@ -53,6 +54,15 @@ hr {
 #column-title{
 	color:#ffffff;
 }
+
+#footer {
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  width:100%;
+  background:#999;
+}
+
 
 
 

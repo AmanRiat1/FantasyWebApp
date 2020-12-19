@@ -1,79 +1,67 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Fantasy Basketball Tool</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="{% static 'Games/style.css' %}">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://kit.fontawesome.com/adb6714e26.js"></script>
-</head>
-
-<body>
-	<div class = "main-body">
-	  <div id="nav">
-	    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
-	      <!-- Navbar text-->
-	      <span class="navbar-text">
-	        <h1 class="text-center">Fantasy Ball Tool</h1>
-	      </span>
-	    </nav>
-	    <br>
-	  </div>
-
-	  <div class="m-3 mb-5">
-	    <div class="container-fluid">
-	      <form id="form-main" method="post" class="text-center">
-	        {% csrf_token %}
-	        {{ form.start_date.label_tag}}
-	        {{ form.start_date}}
-	        {{ form.end_date.label_tag }}
-	        {{ form.end_date }}
-	      <input class = "btn btn-secondary" type="submit" value="Submit">
-			{% if form.errors %}
-			    <ul class="user-msg error">
-			    {% for field in form %}
-			        {% for error in field.errors %}
-
-
-<div class="alert alert-danger alert-dismissible fade show">
-    <strong>{{ field.label }}: </strong>{{ error }}.
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-</div>
-
-
-			        {% endfor %}
-			    {% endfor %}
-			    </ul>
-			{% endif %}
-	      </form>        
-	    </div>
-	  </div>
-
-	  <hr>
-
-	  {% block content %}
-	  {% endblock %}
-	</div>
-
-<footer class="page-footer font-small blue site-footer">
-  <div class="footer-bottom">
-    <div class="footer-copyright text-center py-3">
-      <a id="column-title"> Aman Riat</a>
-      <a href="https://github.com/AmanRiat1/FantasyWebApp" target="_blank" class="btn-floating btn-lg btn-git" role="button"><i class="fab fa-github"></i></a>
+  <head>
+    <title>Fantasy Basketball Tool</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'Games/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/adb6714e26.js"></script>
+  </head>
+  <body>
+    <div class="d-flex flex-column sticky-footer-wrapper min-vh-100">
+      <div class = "main-body">
+        <div id="nav">
+          <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
+            <!-- Navbar text-->
+            <span class="navbar-text">
+              <h1 class="text-center">Fantasy Ball Tool</h1>
+            </span>
+          </nav>
+          <br/>
+        </div>
+        <div class="m-3 mb-5">
+          <div class="container-fluid">
+            <form id="form-main" method="post" class="text-center">
+              {% csrf_token %}
+              {{ form.start_date.label_tag}}
+              {{ form.start_date}}
+              {{ form.end_date.label_tag }}
+              {{ form.end_date }}
+              <input class = "btn btn-secondary" type="submit" value="Submit"/>
+              {% if form.errors %}
+              <ul class="user-msg error">
+                {% for field in form %}
+									{% for error in field.errors %}
+										<div class="alert alert-danger alert-dismissible fade show">
+											<strong>{{ field.label }}: </strong>{{ error }}.
+											<button type="button" class="close" data-dismiss="alert">&times;</button>
+										</div>
+									{% endfor %}
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </form>
+          </div>
+        </div>
+        <hr/>
+        {% block content %}
+        {% endblock %}
+      </div>
+      <footer class="page-footer font-small blue site-footer" id="footer">
+        <div class="footer-bottom">
+          <div class="footer-copyright text-center py-3">
+            <a id="column-title"> Aman Riat</a>
+            <a href="https://github.com/AmanRiat1/FantasyWebApp" target="_blank" class="btn-floating btn-lg btn-git" role="button"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </footer>
     </div>
-  </div>
-</footer>
-
-</body>
-
+  </body>
 </html>
-
-
