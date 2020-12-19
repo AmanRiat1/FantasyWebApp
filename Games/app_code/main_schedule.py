@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import datetime
 
-file = os.path.realpath(r'./static/Games/NBA-2019-20.xls')
+file = os.path.realpath(r'./static/Games/NBA-2020-21.xls')
 data = pd.read_excel(file)
 
 def convert_time(date):
